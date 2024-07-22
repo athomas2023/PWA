@@ -11,7 +11,25 @@
     <h1>Welcome to My PWA</h1>
     <p>This is a simple Progressive Web App.</p>
     
-    <button id="install-btn" >Install PWA</button>
+    <button id="install-btn">Install PWA</button>
+    
+    <h2>Webcam Feed</h2>
+    <video id="webcam" autoplay playsinline></video>
+    
     <script src="app.js"></script>
+    <script>
+        // Access the webcam
+        const video = document.getElementById('webcam');
+
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    video.srcObject = stream;
+                })
+                .catch(err => {
+                    console.error('Error accessing the webcam', err);
+                });
+        }
+    </script>
 </body>
 </html>
